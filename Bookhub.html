@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ina's Book Hub</title>
+  <meta name="description" content="Ina's Book Hub — curated romance classics with inviting reviews and monetized links.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    /* Base */
+    :root { --radius: 10px; --spacing: 20px; --transition: 0.25s ease; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      transition: background-color var(--transition), color var(--transition);
+    }
+    header, section {
+      padding: var(--spacing);
+      margin: var(--spacing);
+      border-radius: var(--radius);
+      transition: background-color var(--transition), color var(--transition), border-color var(--transition);
+    }
+    h1, h2 { margin-top: 0; }
+    nav {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin: 0 var(--spacing);
+      flex-wrap: wrap;
+    }
+    nav a {
+      text-decoration: none;
+      font-weight: bold;
+      padding: 6px 10px;
+      border-radius: 8px;
+      transition: color var(--transition), background-color var(--transition);
+    }
+    .theme-switcher {
+      margin: var(--spacing);
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .theme-switcher button {
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: none;
+      font-weight: bold;
+      transition: background-color var(--transition), color var(--transition), border-color var(--transition);
+    }
+    .book { margin-bottom: 28px; }
+    .book-title { font-weight: bold; font-size: 1.2em; }
+    .genre { font-style: italic; }
+
+    /* ===== LIBRARY LIGHT ===== */
+    body.library { background-color: #ffffff; color: #000; }
+    body.library header, body.library section { background-color: #f5f5f5; border: 1px solid #e6e6e6; }
+    body.library h1, body.library h2 { color: #000; }
+    body.library a.download-link { display: inline-block; padding: 10px 20px; border-radius: var(--radius); text-decoration: none; font-weight: bold; background-color: #333; color: #fff; }
+    body.library a.download-link:hover { background-color: #555; }
+    body.library nav a { color: #333; }
+    body.library nav a:hover { color: #000; background-color: #eee; }
+    body.library .theme-switcher button { background-color: #333; color: #fff; }
+    body.library .theme-switcher button:hover { background-color: #555; }
+
+    /* ===== LAVENDER LIGHT ===== */
+    body.lavender { background-color: #e6e6fa; color: #333; }
+    body.lavender header, body.lavender section { background-color: #fff; border: 1px solid #dcd6f7; }
+    body.lavender h1, body.lavender h2 { color: #9370db; }
+    body.lavender a.download-link { display: inline-block; padding: 10px 20px; border-radius: var(--radius); text-decoration: none; font-weight: bold; background-color: #9370db; color: #fff; }
+    body.lavender a.download-link:hover { background-color: #6a5acd; }
+    body.lavender nav a { color: #6a5acd; }
+    body.lavender nav a:hover { color: #9370db; background-color: #f3f1ff; }
+    body.lavender .theme-switcher button { background-color: #9370db; color: #fff; }
+    body.lavender .theme-switcher button:hover { background-color: #6a5acd; }
+
+    /* ===== DARK ===== */
+    body.dark { background-color: #2f2f2f; color: #fff; }
+    body.dark header, body.dark section { background-color: #000; border: 1px solid #333; }
+    body.dark h1, body.dark h2 { color: #fff; }
+    body.dark a.download-link { display: inline-block; padding: 10px 20px; border-radius: var(--radius); text-decoration: none; font-weight: bold; background-color: #000; color: #fff; border: 1px solid #ccc; }
+    body.dark a.download-link:hover { background-color: #444; border-color: #e0e0e0; }
+    body.dark nav a { color: #ccc; }
+    body.dark nav a:hover { color: #fff; background-color: #1a1a1a; }
+    body.dark .theme-switcher button { background-color: #111; color: #fff; border: 1px solid #666; }
+    body.dark .theme-switcher button:hover { background-color: #333; }
+    footer {
+  text-align: center;
+  padding: 15px;
+  margin: 20px;
+  border-radius: 8px;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Library Light */
+body.library footer {
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid #e6e6e6;
+}
+
+/* Lavender Light */
+body.lavender footer {
+  background-color: #ffffff;
+  color: #9370db;
+  border: 1px solid #dcd6f7;
+}
+
+/* Dark */
+body.dark footer {
+  background-color: #000000;
+  color: #cccccc;
+  border: 1px solid #333333;
+}
+  </style>
+</head>
+<body class="library">
+  <header>
+    <h1>Read With Ina!</h1>
+    <p>Welcome to the Bookverse! ✨</p>
+    <p>Discover timeless romance and classic tales — all free, all public domain.</p>
+    <div class="theme-switcher" aria-label="Theme switcher">
+      <button onclick="setTheme('library')">📖 Library Light</button>
+      <button onclick="setTheme('lavender')">🌸 Lavender Light</button>
+      <button onclick="setTheme('dark')">🌙 Dark Mode</button>
+    </div>
+  </header>
+
+  <nav aria-label="Primary">
+    <a href="https://inaisthatbookishperson.github.io/">🏠 Home</a>
+    <a href="https://inaisthatbookishperson.github.io/Book-hub-/">📚 Book Hub</a>
+    <a href="mailto:egimildred@gmail.com">📧 Email Ina</a>
+  </nav>
+
+  <section>
+    <h2>Romance classics 💕</h2>
+
+    <!-- 10 complete books with longer, catchy descriptions + monetized links -->
+    <div class="book">
+      <span class="book-title">Pride and Prejudice</span> — Jane Austen
+      <span class="genre">(Romance)</span>
+      <p>Elizabeth Bennet’s sparkling wit collides with Mr. Darcy’s cool pride, igniting a slow-burn that redefines enemies-to-lovers. Beneath the banter is a piercing look at class, reputation, and the courage it takes to change. Every chapter crackles with humor and longing—and that pivotal letter flips the story on its head. If you want romance with bite and brains, start here.</p>
+      <a href="https://your-affiliate.example/ina?book=pride-and-prejudice" class="download-link" target="_blank">📖 Download / Buy</a>
+    </div>
+
+    <div class="book">
+      <span class="book-title">Jane Eyre</span> — Charlotte Brontë
+      <span class="genre">(Romance / Gothic)</span>
+      <p>Jane’s fierce moral compass meets Rochester’s stormy passion in a tale of love forged through fire. Thornfield Hall is full of secrets, but Jane refuses to betray herself—even when her heart begs her to. Gothic tension, aching honesty, and a heroine who insists on equal love make this a forever classic. It’s romance with backbone and shadow.</p>
+      <a href="https://your-affiliate.example/ina?book=jane-eyre" class="download-link" target="_blank">📖 Download / Buy</a>
+    </div>
+
+    <div class="book">
+      <span class="book-title">Persuasion</span> — Jane Austen
+      <span class="genre">(Second‑chance romance)</span>
+      <p>Anne Elliot once let love slip away—now fate puts Captain Wentworth back in her orbit. Regret softens into hope as small kindnesses and glances speak louder than words. Then comes a letter so devastatingly romantic it still makes readers gasp. Quiet, mature, and deeply tender, this is love that learns to wait—and then runs.</p>
+      <a href="https://your-affiliate.example/ina?book=persuasion" class="download-link" target="_blank">📖 Download / Buy</a>
+    </div>
+
+    <div class="book">
+      <span class="book-title">The Age of Innocence</span> — Edith Wharton
+      <span class="genre">(Romance / Society)</span>
+      <p>In glittering Gilded Age New York, Newland Archer’s perfect life is a performance—until Countess Olenska sparks a dangerous honesty. Duty and desire duel in drawing rooms where every glance is a scandal. It’s refined, restrained, and quietly devastating: a love story about the cost of choosing safety over truth.</p>
+      <a href="https://your-affiliate.example/ina?book=age-of-innocence" class="download-link" target="_blank">📖 Download / Buy</a>
+    </div>
+
+    <div class="book">
+      <span class="book-title">The Scarlet Pimpernel</span> — Baroness Orczy
+      <span class="genre">(Romance / Adventure)</span>
+      <p>A swashbuckling secret identity, daring rescues, and a marriage caught in the crossfire. Sir Percy’s foppish mask hides a pulse‑pounding hero, while Lady Blakeney must choose between pride and trust. Fast, fun, and irresistibly romantic—this is adventure with a heart, and a lily you won’t forget.</p>
+      <a href="https://your-affiliate.example/ina?book=scarlet-pimpernel" class="download-link" target="_blank">📖 Download / Buy</a>
+    </div>
+
+    <div class="book">
+      <span class="book-title">A Room with a View</span> — E.M. Forster
+      <span class="genre">(Romance / Coming‑of‑age)</span>
+      <p>Sunlit Florence cracks open Lucy Honeychurch’s carefully arranged life. Between propriety and passion, she learns that the best views require stepping outside the frame. Charming, bright, and quietly radical—choose your own path, and let love be your compass. It’s a warm breeze of a book that lingers.</p>
+      <a href="https://your-affiliate.example/ina?book=room-with-a-view" class="download-link" target="_blank">📖 Download / Buy</a>
+    </div>
+
+    <div class="book">
+      <span class="book-title">The Phantom of the Opera</span> — Gaston Leroux
+      <span class="genre">(Romance / Gothic)</span>
+      <p>Under the opera’s chandelier, obsession sings louder than love. Christine Daaé becomes muse and mirror to a masked genius whose brilliance terrifies and enthralls. A fever dream of music, mystery, and a love triangle that refuses to fade—romance in a minor key you’ll feel in your bones.</p>
+      <a href="https://your-affiliate.example/ina?book=phantom-of-the-opera" class="download-link" target="_blank">📖 Download / Buy</a>
+    </div>
+
+    <div class="book">
+      <span class="book-title">Anna Karenina</span> — Leo Tolstoy
+      <span class="genre">(Romance / Tragedy)</span>
+      <p>Desire meets duty on unforgiving ground. Anna’s luminous love defies her world, but the cost is as relentless as the Russian winter. Grand, human, and painfully beautiful, this novel asks what happiness is—and what we’ll risk to hold it. It’s the romance that looks life in the eye.</p>
+      <a href="https://your-affiliate.example/ina?book=anna-karenina" class="download-link" target="_blank">📖 Download / Buy</a>
+    </div>
+
+    <div class="book">
+      <span class="book-title">The Tenant of Wildfell Hall</span> — Anne Brontë
+      <span class="genre">(Romance / Drama)</span>
+      <p>Helen Graham redraws the lines of love and respect with fearless clarity. Her past is a challenge—and a wake‑up call—to a community and a suitor who must learn to grow. Fierce, modern, and deeply romantic, this is love as action, not just a feeling. Brontë at her bravest.</p>
+      <a href="https://your-affiliate.example/ina?book=tenant-of-wildfell-hall" class="download-link" target="_blank">📖 Download / Buy</a>
+    </div>
+
+    <div class="book">
+      <span class="book-title">North and South</span> — Elizabeth Gaskell
+      <span class="genre">(Romance / Social)</span>
+      <p>Industrial grit meets burning chemistry as Margaret Hale and John Thornton clash over class, justice, and pride. Respect turns electric, and every argument lays another brick in a powerful love story. If you crave hard‑won romance with sharp social insight, this delivers in spades.</p>
+      <a href="https://your-affiliate.example/ina?book=north-and-south" class="download-link" target="_blank">📖 Download / Buy</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Back to homepage</h2>
+    <p>
+      <a href="Homepage.html" class="download-link" target="_blank">🏠 Return to Ina’s Homepage</a>
+    </p>
+  </section>
+
+  <script>
+    // Initialize saved theme or default to library
+    (function () {
+      const saved = localStorage.getItem('ina-theme');
+      document.body.className = saved ? saved : 'library';
+    })();
+
+    // Switch and persist
+    function setTheme(theme) {
+      document.body.className = theme;
+      localStorage.setItem('ina-theme', theme);
+    }
+  </script>
+<footer>
+  <p>© 2025 Ina's Book Hub · Made with 📚 + ☕ by Mildred (Ina) ✨</p>
+</footer></body>
+</html>
